@@ -10,6 +10,11 @@ Don't hesitate to submit changes that will help me to improve the code 🤗.
 
 > **DO NOT USE IN PRODUCTION**
 
+## ToDo
+
+- [ ] Assertions on rule keys according to the implementation
+- [ ] Make test derivations to compare output files
+
 ## Usage
 
 ### Flakes
