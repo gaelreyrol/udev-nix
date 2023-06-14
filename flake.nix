@@ -62,7 +62,7 @@
             pkgs.unstable.editorconfig-checker
             pkgs.unstable.actionlint
           ];
-          # inherit (self.checks."${system}".pre-commit-check) shellHook;
+          inherit (self.checks."${system}".pre-commit-check) shellHook;
         };
       });
 
