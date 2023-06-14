@@ -20,7 +20,7 @@ Import the flake:
 {
   inputs = {
     udev-nix.url = "github:gaelreyrol/udev-nix";
-  }
+  };
 }
 ```
 
