@@ -4,6 +4,10 @@
 
 > A small utility library to create udev rules with Nix!
 
+For now this is a pet project to improve my Nix knowledge, the API might change in the future.
+
+> **DO NOT USE IN PRODUCTION**
+
 ## Usage
 
 ### Flakes
