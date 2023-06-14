@@ -3,6 +3,7 @@
 # https://man.archlinux.org/man/udev.7
 # http://www.reactivated.net/writing_udev_rules.html
 let
+  toUppercase = pkgs.lib.strings.toUpper;
   joinOperator = operator: value: "${operator}\"${valueFormat value}\"";
   valueFormat = value:
     if builtins.isString value then value
@@ -20,13 +21,13 @@ let
     (key: value: {
       inherit key;
       value =
-        if builtins.isString value then "${pkgs.lib.strings.toUpper key}${value}"
+        if builtins.isString value then "${toUppercase key}${value}"
         else if builtins.isAttrs value then
           builtins.concatStringsSep " "
-            (builtins.map (value: "${pkgs.lib.strings.toUpper key}${value}") (
+            (builtins.map (value: "${toUppercase key}${value}") (
               builtins.attrValues (builtins.mapAttrs (name: value: "{${name}}${value}") value)
             ))
-        else if builtins.isList value then builtins.concatStringsSep " " (builtins.map (value: "${pkgs.lib.strings.toUpper key}${value}") value)
+        else if builtins.isList value then builtins.concatStringsSep " " (builtins.map (value: "${toUppercase key}${value}") value)
         else builtins.throw "not a string, list or attrset, is: ${builtins.typeOf value}"
       ;
     });
