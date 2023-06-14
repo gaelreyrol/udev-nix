@@ -28,9 +28,13 @@ Create an udev file:
 
 ```nix
 {
-  outputs = inputs@{ nixpkgs, udev-nix, ... }: {
-    packages.x86_64-linux.myUdevFile = udev-nix.lib."x86_64-linux".mkUdevFile "20-test.rules" {
-      rules = with myLib.udev; {
+  outputs = inputs@{ nixpkgs, udev-nix, ... }:
+  let
+    udevLib = udev-nix.lib."x86_64-linux";
+  in
+  {
+    packages.x86_64-linux.myUdevFile = udevLib.mkUdevFile "20-test.rules" {
+      rules = with udevLib; {
         "Description on my udev file" = {
           Subsystems = operators.match "usb";
           Tag = [
