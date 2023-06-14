@@ -20,13 +20,13 @@ let
     (key: value: {
       inherit key;
       value =
-        if builtins.isString value then "${key}${value}"
+        if builtins.isString value then "${pkgs.lib.strings.toUpper key}${value}"
         else if builtins.isAttrs value then
           builtins.concatStringsSep " "
-            (builtins.map (value: "${key}${value}") (
+            (builtins.map (value: "${pkgs.lib.strings.toUpper key}${value}") (
               builtins.attrValues (builtins.mapAttrs (name: value: "{${name}}${value}") value)
             ))
-        else if builtins.isList value then builtins.concatStringsSep " " (builtins.map (value: "${key}${value}") value)
+        else if builtins.isList value then builtins.concatStringsSep " " (builtins.map (value: "${pkgs.lib.strings.toUpper key}${value}") value)
         else builtins.throw "not a string, list or attrset, is: ${builtins.typeOf value}"
       ;
     });

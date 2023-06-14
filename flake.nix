@@ -42,17 +42,23 @@
         programs.nixpkgs-fmt.enable = true;
       });
 
-      checks = forSystems ({ pkgs, system }: {
-        pre-commit-check = pre-commit-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            nixpkgs-fmt.enable = true;
-            statix.enable = true;
-            editorconfig-checker.enable = true;
-            actionlint.enable = true;
+      checks = forSystems ({ pkgs, system }:
+        let
+          udevTests = import ./tests { udev = self.lib.${system}; };
+        in
+        {
+          pre-commit-check = pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              nixpkgs-fmt.enable = true;
+              statix.enable = true;
+              editorconfig-checker.enable = true;
+              actionlint.enable = true;
+            };
           };
-        };
-      });
+          # inherit udevTests; # TODO: make test derivation to compare output files
+        }
+      );
 
       devShells = forSystems ({ pkgs, system }: {
         default = pkgs.mkShell {
