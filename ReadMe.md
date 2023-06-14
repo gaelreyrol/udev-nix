@@ -6,6 +6,8 @@
 
 For now this is a pet project to improve my Nix knowledge, the API might change in the future.
 
+Don't hesitate to submit changes that will help me to improve the code 🤗.
+
 > **DO NOT USE IN PRODUCTION**
 
 ## Usage
