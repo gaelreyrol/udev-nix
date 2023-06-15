@@ -3,6 +3,45 @@
 # https://man.archlinux.org/man/udev.7
 # http://www.reactivated.net/writing_udev_rules.html
 let
+  matchKeys = [
+    "ACTION"
+    "DEVPATH"
+    "KERNEL"
+    "KERNELS"
+    "NAME"
+    "SYMLINK"
+    "SUBSYSTEM"
+    "SUBSYSTEMS"
+    "DRIVER"
+    "DRIVERS"
+    "ATTR"
+    "ATTRS"
+    "SYSCTL"
+    "ENV"
+    "CONST"
+    "TAG"
+    "TAGS"
+    "TEST"
+    "PROGRAM"
+    "RESULT"
+  ];
+  assignKeys = [
+    "NAME"
+    "SYMLINK"
+    "OWNER"
+    "GROUP"
+    "MODE"
+    "SECLABEL"
+    "ATTR"
+    "SYSCTL"
+    "ENV"
+    "TAG"
+    "RUN"
+    "LABEL"
+    "GOTO"
+    "IMPORT"
+    "OPTIONS"
+  ];
   toUppercase = pkgs.lib.strings.toUpper;
   joinOperator = operator: value: "${operator}\"${valueFormat value}\"";
   valueFormat = value:
