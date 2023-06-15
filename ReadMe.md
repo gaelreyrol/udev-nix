@@ -13,7 +13,8 @@ Don't hesitate to submit changes that will help me to improve the code 🤗.
 ## ToDo
 
 - [ ] Assertions on rule keys according to the implementation
-- [ ] Make test derivations to compare output files
+- [x] Make test derivations to compare output files
+- [ ] Explain API functions
 
 ## Usage
 
@@ -42,9 +43,7 @@ Create an udev file:
       rules = with udevLib; {
         "Description on my udev file" = {
           Subsystems = operators.match "usb";
-          Tag = [
-            (operators.add "uaccess")
-          ];
+          Tag = operators.add "uaccess"
         };
       };
     };
@@ -57,5 +56,5 @@ It will produce this result:
 ```bash
 $ cat /nix/store/pn8abdgzvafkywdpwzcn09hi0vw8np27-20-test.rules
 # Description on my udev file
-SUBSYSTEMS=="usb" TAG+="uaccess"
+TAG+="uaccess" SUBSYSTEMS=="usb"
 ```

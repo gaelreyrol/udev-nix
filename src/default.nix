@@ -39,12 +39,10 @@ let
       })
       (builtins.mapAttrs writeUdevRule rules)
   );
-  writeUdevFile = name: { rules }: builtins.concatStringsSep "\n" (builtins.map
-    ({ name, value }: ''
-      # ${name}
-      ${value}
-    '')
-    (writeUdevRules rules));
+  writeUdevFile = name: { rules }: builtins.concatStringsSep "\n"
+    (builtins.map
+      ({ name, value }: "# ${name}\n${value}")
+      (writeUdevRules rules)) + "\n\n";
 in
 {
   internal = {

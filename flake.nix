@@ -44,7 +44,11 @@
 
       checks = forSystems ({ pkgs, system }:
         let
-          udevTests = import ./tests { udev = self.lib.${system}; };
+          udevTests = import ./tests {
+            inherit pkgs;
+            udev = self.lib.${system};
+          };
+          udevTestsResults = builtins.mapAttrs (name: test: test.result) udevTests;
         in
         {
           pre-commit-check = pre-commit-hooks.lib.${system}.run {
@@ -56,8 +60,7 @@
               actionlint.enable = true;
             };
           };
-          # inherit udevTests; # TODO: make test derivation to compare output files
-        }
+        } // udevTestsResults
       );
 
       devShells = forSystems ({ pkgs, system }: {
