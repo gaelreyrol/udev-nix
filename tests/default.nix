@@ -2,7 +2,7 @@
 
 let
   tests = with udev; {
-    "usb-printer" = {
+    "usb-printer.rules" = {
       rules = {
         "Epson USB Printer" = {
           Subsystem = operators.match "usb";
@@ -17,7 +17,7 @@ let
         ATTRS{serial}==\"L72010011070626380\" SUBSYSTEM==\"usb\" SYMLINK+=\"epson_680\"
       '';
     };
-    "usb-camera" = {
+    "usb-camera.rules" = {
       rules = {
         "Olympus USB Camera" = {
           Kernel = operators.match "sd?1";
@@ -33,7 +33,7 @@ let
         ATTRS{model}==\"X250,D560Z,C350Z\" KERNEL==\"sd?1\" SUBSYSTEMS==\"scsi\" SYMLINK+=\"camera\"
       '';
     };
-    "usb-hard-disk" = {
+    "usb-hard-disk.rules" = {
       rules = {
         "USB Storage" = {
           Kernel = operators.match "sd*";
@@ -49,7 +49,7 @@ let
         ATTRS{model}==\"USB 2.0 Storage Device\" KERNEL==\"sd*\" SUBSYSTEMS==\"scsi\" SYMLINK+=\"usbhd%n\"
       '';
     };
-    "usb-card-reader" = {
+    "usb-card-reader.rules" = {
       rules = {
         "USB CompactFlash Reader" = {
           Kernel = operators.match "sd*";
@@ -66,7 +66,7 @@ let
         ATTRS{model}==\"USB 2.0 CompactFlash Reader\" KERNEL==\"sd*\" OPTIONS+=\"all_partitions\" SUBSYSTEMS==\"scsi\" SYMLINK+=\"cfrdr%n\"
       '';
     };
-    "usb-palm-pilot" = {
+    "usb-palm-pilot.rules" = {
       rules = {
         "Palm Pilot" = {
           Subsystems = operators.match "usb";
@@ -82,7 +82,7 @@ let
         ATTRS{product}==\"Palm Handheld\" KERNEL==\"ttyUSB*\" SUBSYSTEMS==\"usb\" SYMLINK+=\"pilot\"
       '';
     };
-    "cd-drives" = {
+    "cd-drives.rules" = {
       rules = {
         "DVD CDROM Group" = {
           Subsystem = operators.match "block";
@@ -104,7 +104,7 @@ let
         GROUP=\"cdrom\" KERNEL==\"hdc\" SUBSYSTEM==\"block\" SYMLINK+=\"dvdrw\"
       '';
     };
-    "network-interface" = {
+    "network-interface.rules" = {
       rules = {
         "LAN rename" = {
           Kernel = operators.match "eth*";
