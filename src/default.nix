@@ -56,7 +56,7 @@ let
     remove = joinOperator "-=";
     force = joinOperator ":=";
   };
-  writeUdevRule = name: builtins.mapAttrs
+  toUdevRule = name: builtins.mapAttrs
     (key: value: {
       inherit key;
       value =
@@ -70,23 +70,23 @@ let
         else builtins.throw "not a string, list or attrset, is: ${builtins.typeOf value}"
       ;
     });
-  writeUdevRules = rules: builtins.attrValues (
+  toUdevRules = rules: builtins.attrValues (
     builtins.mapAttrs
       (name: value: {
         inherit name;
         value = builtins.concatStringsSep " " (builtins.catAttrs "value" (builtins.attrValues value));
       })
-      (builtins.mapAttrs writeUdevRule rules)
+      (builtins.mapAttrs toUdevRule rules)
   );
-  writeUdevFile = name: { rules }: builtins.concatStringsSep "\n"
+  toUdevFile = name: { rules }: builtins.concatStringsSep "\n"
     (builtins.map
       ({ name, value }: "# ${name}\n${value}")
-      (writeUdevRules rules)) + "\n\n";
+      (toUdevRules rules)) + "\n\n";
 in
 {
-  inherit operators writeUdevRule writeUdevRules writeUdevFile;
-  mkUdevFile = name: attrs: pkgs.writeTextFile {
+  inherit operators toUdevRule toUdevRules toUdevFile;
+  writeUdevFile = name: attrs: pkgs.writeTextFile {
     inherit name;
-    text = writeUdevFile name attrs;
+    text = toUdevFile name attrs;
   };
 }

@@ -145,6 +145,6 @@ builtins.mapAttrs
   (builtins.mapAttrs
     (name: test: {
       inherit (test) expect;
-      drv = udev.mkUdevFile name { inherit (test) rules; };
+      drv = udev.writeUdevFile name { inherit (test) rules; };
     })
     tests)
