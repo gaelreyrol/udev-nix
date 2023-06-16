@@ -14,7 +14,7 @@ let
       };
       expect = ''
         # Epson USB Printer
-        ATTRS{serial}==\"L72010011070626380\" SUBSYSTEM==\"usb\" SYMLINK+=\"epson_680\"
+        ATTRS{serial}==\"L72010011070626380\", SUBSYSTEM==\"usb\", SYMLINK+=\"epson_680\"
       '';
     };
     "usb-camera.rules" = {
@@ -30,7 +30,7 @@ let
       };
       expect = ''
         # Olympus USB Camera
-        ATTRS{model}==\"X250,D560Z,C350Z\" KERNEL==\"sd?1\" SUBSYSTEMS==\"scsi\" SYMLINK+=\"camera\"
+        ATTRS{model}==\"X250,D560Z,C350Z\", KERNEL==\"sd?1\", SUBSYSTEMS==\"scsi\", SYMLINK+=\"camera\"
       '';
     };
     "usb-hard-disk.rules" = {
@@ -46,7 +46,7 @@ let
       };
       expect = ''
         # USB Storage
-        ATTRS{model}==\"USB 2.0 Storage Device\" KERNEL==\"sd*\" SUBSYSTEMS==\"scsi\" SYMLINK+=\"usbhd%n\"
+        ATTRS{model}==\"USB 2.0 Storage Device\", KERNEL==\"sd*\", SUBSYSTEMS==\"scsi\", SYMLINK+=\"usbhd%n\"
       '';
     };
     "usb-card-reader.rules" = {
@@ -63,7 +63,7 @@ let
       };
       expect = ''
         # USB CompactFlash Reader
-        ATTRS{model}==\"USB 2.0 CompactFlash Reader\" KERNEL==\"sd*\" OPTIONS+=\"all_partitions\" SUBSYSTEMS==\"scsi\" SYMLINK+=\"cfrdr%n\"
+        ATTRS{model}==\"USB 2.0 CompactFlash Reader\", KERNEL==\"sd*\", OPTIONS+=\"all_partitions\", SUBSYSTEMS==\"scsi\", SYMLINK+=\"cfrdr%n\"
       '';
     };
     "usb-palm-pilot.rules" = {
@@ -79,7 +79,7 @@ let
       };
       expect = ''
         # Palm Pilot
-        ATTRS{product}==\"Palm Handheld\" KERNEL==\"ttyUSB*\" SUBSYSTEMS==\"usb\" SYMLINK+=\"pilot\"
+        ATTRS{product}==\"Palm Handheld\", KERNEL==\"ttyUSB*\", SUBSYSTEMS==\"usb\", SYMLINK+=\"pilot\"
       '';
     };
     "cd-drives.rules" = {
@@ -99,9 +99,9 @@ let
       };
       expect = ''
         # DVD CDROM Group
-        GROUP=\"cdrom\" KERNEL==\"hdc\" SUBSYSTEM==\"block\" SYMLINK+=\"dvd\"
+        GROUP=\"cdrom\", KERNEL==\"hdc\", SUBSYSTEM==\"block\", SYMLINK+=\"dvd\"
         # DVDRW CDROM Group
-        GROUP=\"cdrom\" KERNEL==\"hdc\" SUBSYSTEM==\"block\" SYMLINK+=\"dvdrw\"
+        GROUP=\"cdrom\", KERNEL==\"hdc\", SUBSYSTEM==\"block\", SYMLINK+=\"dvdrw\"
       '';
     };
     "network-interface.rules" = {
@@ -116,7 +116,7 @@ let
       };
       expect = ''
         # LAN rename
-        ATTR{address}==\"00:52:8b:d5:04:48\" KERNEL==\"eth*\" NAME=\"lan\"
+        ATTR{address}==\"00:52:8b:d5:04:48\", KERNEL==\"eth*\", NAME=\"lan\"
       '';
     };
   };

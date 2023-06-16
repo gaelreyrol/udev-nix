@@ -34,7 +34,10 @@
               };
             }
           );
-
+      udevTests = { system, pkgs }: import ./tests {
+        inherit pkgs;
+        udev = self.lib.${system};
+      };
     in
     {
       formatter = forSystems ({ pkgs, system }: treefmt-nix.lib.mkWrapper pkgs.unstable {
@@ -42,13 +45,12 @@
         programs.nixpkgs-fmt.enable = true;
       });
 
+      # For testing purposes, udevTests result is not a derivation.
+      # packages = forSystems ({ pkgs, system }: udevTests { inherit pkgs system; });
+
       checks = forSystems ({ pkgs, system }:
         let
-          udevTests = import ./tests {
-            inherit pkgs;
-            udev = self.lib.${system};
-          };
-          udevTestsResults = builtins.mapAttrs (name: test: test.result) udevTests;
+          udevTestsResults = builtins.mapAttrs (name: test: test.result) (udevTests { inherit pkgs system; });
         in
         {
           pre-commit-check = pre-commit-hooks.lib.${system}.run {

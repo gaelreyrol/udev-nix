@@ -43,7 +43,7 @@ Create an udev file:
       rules = with udevLib; {
         "Description on my udev file" = {
           Subsystems = operators.match "usb";
-          Tag = operators.add "uaccess"
+          Tag = operators.add "uaccess";
         };
       };
     };
@@ -56,5 +56,5 @@ It will produce this result:
 ```bash
 $ cat /nix/store/pn8abdgzvafkywdpwzcn09hi0vw8np27-20-test.rules
 # Description on my udev file
-TAG+="uaccess" SUBSYSTEMS=="usb"
+TAG+="uaccess", SUBSYSTEMS=="usb"
 ```

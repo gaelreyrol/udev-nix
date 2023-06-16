@@ -74,7 +74,7 @@ let
     builtins.mapAttrs
       (name: value: {
         inherit name;
-        value = builtins.concatStringsSep " " (builtins.catAttrs "value" (builtins.attrValues value));
+        value = builtins.concatStringsSep ", " (builtins.catAttrs "value" (builtins.attrValues value));
       })
       (builtins.mapAttrs toUdevRule rules)
   );
