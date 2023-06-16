@@ -84,10 +84,7 @@ let
       (writeUdevRules rules)) + "\n\n";
 in
 {
-  internal = {
-    inherit writeUdevRule writeUdevRules writeUdevFile;
-  };
-  inherit operators;
+  inherit operators writeUdevRule writeUdevRules writeUdevFile;
   mkUdevFile = name: attrs: pkgs.writeTextFile {
     inherit name;
     text = writeUdevFile name attrs;
