@@ -12,9 +12,13 @@ Don't hesitate to submit changes that will help me to improve the code 🤗.
 
 ## ToDo
 
-- [ ] Assertions on rule keys according to the implementation
 - [x] Make test derivations to compare output files
-- [ ] Explain API functions
+- [ ] Assertions on rule keys according to the implementation
+- [ ] Improve API through composition
+  - [ ] Explain API functions
+- [ ] Find a way to test rules on devices (in a VM)
+- [ ] Create and expose a NixOS Module
+- [ ] Inspire from [Disko](https://github.com/nix-community/disko)
 
 ## Usage
 
