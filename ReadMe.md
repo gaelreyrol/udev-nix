@@ -18,7 +18,7 @@ Don't hesitate to submit changes that will help me to improve the code 🤗.
   - [ ] Explain API functions
 - [ ] Find a way to test rules on devices (in a VM)
 - [ ] Create and expose a NixOS Module
-- [ ] Inspire from [Disko](https://github.com/nix-community/disko)
+- [ ] Inspire from [Disko](https://github.com/nix-community/disko) & [notnft](https://github.com/chayleaf/notnft)
 
 ## Usage
 
