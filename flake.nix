@@ -8,9 +8,13 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "unstable";
 
-    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
-    pre-commit-hooks.inputs.nixpkgs-stable.follows = "nixpkgs";
-    pre-commit-hooks.inputs.nixpkgs.follows = "unstable";
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs = {
+        nixpkgs-stable.follows = "nixpkgs";
+        nixpkgs.follows = "unstable";
+      };
+    };
   };
 
   outputs = { self, nixpkgs, unstable, treefmt-nix, pre-commit-hooks, ... }:
